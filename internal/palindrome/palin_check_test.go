@@ -2,29 +2,29 @@ package palindrome
 
 import "testing"
 
-// TestIsPalindrome tests the IsPalindrome function with various input cases.
-// It checks both typical and edge cases, including mixed case, empty strings,
-// single characters, and numeric strings to verify correct palindrome detection.
 func TestIsPalindrome(t *testing.T) {
 	tests := []struct {
-		input    string
-		expected bool
+		input         string
+		caseSensitive bool
+		expected      bool
 	}{
-		{"Radar", true},
-		{"Level", true},
-		{"World", false},
-		{"Madam", true},
-		{"GoLang", false},
-		{"", true},       // Edge case: empty string
-		{"A", true},      // Edge case: single character
-		{"12321", true},  // Numeric palindrome
-		{"12345", false},
+		{"Radar", false, true},
+		{"Radar", true, false},
+		{"Level", false, true},
+		{"Level", true, false},
+		{"World", false, false},
+		{"Madam", false, true},
+		{"GoLang", false, false},
+		{"", false, true},       // Edge case: empty string
+		{"A", false, true},      // Edge case: single character
+		{"12321", false, true},  // Numeric palindrome
+		{"12345", false, false},
 	}
 
 	for _, test := range tests {
-		result := IsPalindrome(test.input)
+		result := IsPalindrome(test.input, test.caseSensitive)
 		if result != test.expected {
-			t.Errorf("IsPalindrome(%q) = %v; expected %v", test.input, result, test.expected)
+			t.Errorf("IsPalindrome(%q, caseSensitive=%v) = %v; expected %v", test.input, test.caseSensitive, result, test.expected)
 		}
 	}
 }

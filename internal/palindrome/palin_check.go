@@ -3,9 +3,12 @@ package palindrome
 import "strings"
 
 // IsPalindrome checks whether the given word is a palindrome.
-// It ignores case and compares the word with its reverse.
-func IsPalindrome(word string) bool {
-	word = strings.ToLower(word)
+// It accepts a caseSensitive flag to control case comparison.
+func IsPalindrome(word string, caseSensitive bool) bool {
+	if !caseSensitive {
+		word = strings.ToLower(word)
+	}
+
 	runes := []rune(word)
 	n := len(runes)
 
