@@ -1,3 +1,3 @@
-module github.com/Jatinhati43/Assign_4.git
+module ASSIGN_4
 
 go 1.24.2
